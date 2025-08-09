@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Target modern JS */
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM"],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+
+    /* Rsbuild compatibility */
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+
+    /* Type safety */
+    "strict": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* Experimental (اختیاری) */
+    "erasableSyntaxOnly": true
+  },
+  "include": ["src", "rsbuild.config.ts"],
+  "exclude": ["node_modules"]
+}
