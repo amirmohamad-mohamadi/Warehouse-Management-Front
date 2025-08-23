@@ -3,16 +3,39 @@ import { pluginReact } from "@rsbuild/plugin-react";
 import { pluginSvgr } from "@rsbuild/plugin-svgr";
 import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 import tailwindPostcss from "@tailwindcss/postcss";
+import dotenv from "dotenv";
+
+const ENV_KEYS = [
+  "CUSTOM_NODE_ENV",
+  "API_ENV",
+  "BASE_URL",
+  "DEV_BASE_URL",
+  "GOOGLE_SITEKEY",
+] as const;
+
+const injectEnv = (keys: readonly string[]) =>
+  Object.fromEntries(
+    keys.map((key) => {
+      const value = process.env[key];
+      if (value === undefined) {
+        console.warn(`[ENV WARNING] ${key} is not defined in .env file`);
+      }
+      return [`process.env.${key}`, JSON.stringify(value ?? "")];
+    })
+  );
+
+// TODO: Load env file based on NODE_ENV without path.resolve
+dotenv.config({ path: `.env.${process.env.NODE_ENV ?? "development"}` });
 
 export default defineConfig({
   source: {
     tsconfigPath: "./tsconfig.json",
     entry: {
-      index: "./src/main.tsx", // یا هر فایل ورودی واقعی پروژه‌ات
+      index: "./src/main.tsx",
     },
-
     define: {
       __APP_VERSION__: JSON.stringify("0.0.0"),
+      ...injectEnv(ENV_KEYS),
     },
   },
 
@@ -30,7 +53,7 @@ export default defineConfig({
     },
     sourceMap: {
       js:
-        process.env.NODE_ENV === "development"
+        process.env.CUSTOM_NODE_ENV === "development"
           ? "cheap-module-source-map"
           : false,
       css: false,

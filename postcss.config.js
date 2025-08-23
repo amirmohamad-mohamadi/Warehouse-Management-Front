@@ -1,5 +1,5 @@
 export default {
   plugins: {
-    "@tailwindcss/postcss": {}, // ✅ پلاگین جدید مخصوص Tailwind v4
+    "@tailwindcss/postcss": {}, // TODO: Tailwind v4 plugin
   },
 };

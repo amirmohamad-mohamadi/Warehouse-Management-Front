@@ -69,3 +69,5 @@ src/
 │ └── auth.ts
 ├── types/
 │ └── auth.ts
+├── store/
+├── routes/
