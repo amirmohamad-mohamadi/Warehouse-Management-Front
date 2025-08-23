@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../../components/shared/Button";
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,3 +33,5 @@ export const NotFoundPage = () => {
     </div>
   );
 };
+
+export default NotFoundPage;

@@ -35,7 +35,7 @@ export class ErrorBoundary extends Component<Props, State> {
               زیر را امتحان کنید.
             </p>
             <div className="flex gap-4">
-              <Button to="/" variant="primary">
+              <Button to="/home" variant="primary">
                 بازگشت به صفحه اصلی
               </Button>
               <Button to="/login" variant="secondary">
