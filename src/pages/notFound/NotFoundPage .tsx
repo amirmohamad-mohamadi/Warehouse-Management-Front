@@ -9,7 +9,7 @@ const NotFoundPage = () => {
     if (location.key !== "default") {
       navigate(-1);
     } else {
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -23,7 +23,13 @@ const NotFoundPage = () => {
         ممکنه آدرس اشتباه وارد شده باشه یا صفحه حذف شده باشه.
       </p>
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button to="/" variant="primary" size="md">
+        <Button
+          variant="primary"
+          size="md"
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
           بازگشت به صفحه اصلی
         </Button>
         <Button onClick={handleGoBack} variant="secondary" size="md">

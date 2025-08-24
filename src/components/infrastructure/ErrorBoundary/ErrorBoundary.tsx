@@ -1,5 +1,6 @@
 import { Component, type ReactNode } from "react";
 import { Button } from "../../shared/Button";
+import { history } from "../../../routes/routingHistory";
 
 type Props = {
   children: ReactNode;
@@ -28,17 +29,29 @@ export class ErrorBoundary extends Component<Props, State> {
         this.props.fallback || (
           <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center px-4">
             <h1 className="text-3xl font-bold text-red-600 mb-4">
-              مشکلی پیش آمده 😢
+              مشکلی پیش آمده
             </h1>
             <p className="text-gray-700 mb-6">
               متأسفیم، مشکلی در بارگذاری این بخش رخ داده. لطفاً یکی از گزینه‌های
               زیر را امتحان کنید.
             </p>
             <div className="flex gap-4">
-              <Button to="/home" variant="primary">
+              <Button
+                variant="primary"
+                onClick={() => {
+                  history.push("/home");
+                  window.location.reload();
+                }}
+              >
                 بازگشت به صفحه اصلی
               </Button>
-              <Button to="/login" variant="secondary">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  history.push("/login");
+                  window.location.reload();
+                }}
+              >
                 ورود مجدد
               </Button>
             </div>

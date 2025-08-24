@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../shared/Button";
 import { postRequestToServer } from "../../../services/httpRequst/httpRequest";
 import { useAuthStore } from "../../../store/hooks/useAuthStore";
+import { MainLink } from "../../shared/MainLink";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -60,9 +61,19 @@ export const LoginForm = () => {
           type="password"
           placeholder="******"
         />
-        <Button type="submit" variant="primary" size="md">
+        <Button
+          type="submit"
+          variant="primary"
+          size="md"
+          className="cursor-pointer"
+        >
           ورود
         </Button>
+
+        <div className="flex justify-between mt-4 text-sm text-blue-600">
+          <MainLink to="/signup">ثبت‌نام</MainLink>
+          <MainLink to="/forgot-password">فراموشی رمز عبور</MainLink>
+        </div>
       </form>
     </FormProvider>
   );
