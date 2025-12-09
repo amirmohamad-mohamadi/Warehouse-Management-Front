@@ -1,7 +1,7 @@
-const REFRESH_TOKEN_KEY = "refreshToken";
+const AUTH_DATA_KEY = "authData";
 
 export const tokenStorage = {
-  get: () => localStorage.getItem(REFRESH_TOKEN_KEY),
-  set: (token: string) => localStorage.setItem(REFRESH_TOKEN_KEY, token),
-  clear: () => localStorage.removeItem(REFRESH_TOKEN_KEY),
+  get: () => localStorage.getItem(AUTH_DATA_KEY),
+  set: (token: string) => localStorage.setItem(AUTH_DATA_KEY, token),
+  clear: () => localStorage.removeItem(AUTH_DATA_KEY),
 };
