@@ -16,7 +16,7 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const setRefreshToken = useAuthStore((state) => state.setRefreshToken);
+  const setRefreshToken = useAuthStore((state) => state.setAuth);
   const navigate = useNavigate();
 
   const onSubmit = (data: LoginFormValues) => {
@@ -26,13 +26,18 @@ export const LoginForm = () => {
     postRequestToServer({
       address: endpoint,
       dataEntry: {
-        email: data.identifier,
+        // اگر ایمیل بود → email
+        // اگر نبود → username
+        ...(isEmail
+          ? { email: data.identifier }
+          : { username: data.identifier }),
         password: data.password,
       },
       onSuccess: (res) => {
-        const refreshToken = res.data?.refreshToken;
-        if (refreshToken) {
-          setRefreshToken(refreshToken);
+        const data = res.data;
+
+        if (data?.refreshToken) {
+          setRefreshToken(data?.user, data?.refreshToken);
           navigate("/home");
         } else {
           console.warn("⚠️ Refresh Token دریافت نشد.");

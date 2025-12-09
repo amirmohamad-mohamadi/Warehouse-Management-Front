@@ -35,7 +35,7 @@ axiosClient.interceptors.response.use(
 
     if (status === 401) {
       console.warn("⚠️ Access Token نامعتبر بود. کاربر خارج شد.");
-      useAuthStore.getState().clearToken();
+      useAuthStore.getState().clearAuth();
       window.location.href = "/login";
     }
 

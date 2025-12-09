@@ -21,7 +21,7 @@ export const SignupForm: React.FC = () => {
     postRequestToServer({
       address: "/auth/signup",
       dataEntry: {
-        name: data.username,
+        username: data.username,
         email: data.email,
         password: data.password,
         confirmPassword: data.confirmPassword,
