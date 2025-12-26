@@ -1,6 +1,7 @@
 import axios, { type InternalAxiosRequestConfig, type AxiosError } from "axios";
 import { baseURL } from "../../config/baseURL";
 import { useAuthStore } from "../../store/hooks/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 const axiosClient = axios.create({
   baseURL: baseURL || "http://localhost:3000/api/v1/wms",
@@ -31,12 +32,13 @@ axiosClient.interceptors.request.use(
 axiosClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
+    const navigate = useNavigate();
     const status = error.response?.status;
 
     if (status === 401) {
       console.warn("⚠️ Access Token نامعتبر بود. کاربر خارج شد.");
       useAuthStore.getState().clearAuth();
-      window.location.href = "/login";
+      navigate("/login");
     }
 
     return Promise.reject(error);
