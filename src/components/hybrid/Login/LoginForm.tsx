@@ -76,7 +76,6 @@ export const LoginForm = () => {
           ورود
         </Button>
 
-        {/* دکمه ورود با گوگل */}
         <Button
           type="button"
           variant="secondary"

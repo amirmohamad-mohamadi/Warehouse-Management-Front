@@ -20,6 +20,8 @@ const InputField = ({
     formState: { errors },
   } = useFormContext();
 
+  const isSearch = name === "search";
+
   return (
     <div className={`flex flex-col gap-1 ${className}`}>
       <label htmlFor={name} className="text-sm font-medium">
@@ -31,7 +33,7 @@ const InputField = ({
         placeholder={placeholder}
         {...register(name)}
         className={`border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500 ${
-          ["email", "password", "text"].includes(type) ? "text-left ltr" : ""
+          isSearch ? "text-right rtl placeholder:text-right" : "text-left ltr"
         }`}
       />
       {errors[name] && (
